@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un enseignant</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+<body>
+    <div class="delete-container">
+        <h1>Confirmer la suppression</h1>
+        
+        <div class="warning-text">
+             Attention ! Cette action est irréversible.
+        </div>
+        
+        <p>Êtes-vous sûr de vouloir supprimer l'enseignant :</p>
+        
+        <div class="detail-item">
+            <span class="detail-label">Nom :</span>
+            <span class="detail-value">{{ enseignant.nom }}</span>
+        </div>
+        
+        <div class="detail-item">
+            <span class="detail-label">Spécialité :</span>
+            <span class="detail-value">{{ enseignant.specialite }}</span>
+        </div>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <a href="{% url 'liste_enseignant' %}" class="btn btn-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

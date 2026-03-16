@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>accueil</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+
+<body>
+
+    <h1>Bienvenue dans mon application de l'universite</h1>
+    {% if user.is_authenticated %}
+    <p>Bonjour {{ user.username }}, vous êtes connecté.</p\>
+
+    <div class="navigation">
+        <a href="{% url 'liste_cours' %}" class="btn">Voir les cours</a>
+        <a href="/enseignants/" class="btn">voir tous les enseignants</a>
+        <a href="{% url 'deconnexion' %}" class="btn">Se déconnecter</a>
+        {% else %}
+        <p>Vous n'êtes pas connecté.</p>
+        <a href="{% url 'connexion' %}" class="btn">Se connecter</a>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

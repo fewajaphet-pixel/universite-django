@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Gestion Universitaire</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+<body>
+    <div class="accueil-container">
+        <h1> Bienvenue dans l'application de Gestion Universitaire</h1>
+        
+        <p class="subtitle">Gérez facilement vos cours et enseignants</p>
+
+        <div class="menu-grid">
+            
+            <a href="{% url 'liste_cours' %}" class="menu-card">
+                <div class="card-icon"></div>
+                <h3>Gestion des Cours</h3>
+                <p>Consultez, ajoutez, modifiez ou supprimez des cours</p>
+                <div class="card-stats">
+                    <span class="stat">Total: {{ total_cours }}</span>
+                </div>
+                <span class="card-btn">Voir les cours →</span>
+            </a>
+
+        
+            <a href="{% url 'liste_enseignant' %}" class="menu-card">
+                <div class="card-icon"></div>
+                <h3>Gestion des Enseignants</h3>
+                <p>Gérez la liste des enseignants et leurs spécialités</p>
+                <div class="card-stats">
+                    <span class="stat">Total: {{ total_enseignants }}</span>
+                </div>
+                <span class="card-btn">Voir les enseignants →</span>
+            </a>
+
+            <div class="menu-card quick-actions">
+                <div class="card-icon"></div>
+                <h3>Actions Rapides</h3>
+                <div class="quick-links">
+                    <a href="{% url 'ajouter_cours' %}" class="quick-link">
+                        <span></span> Ajouter un cours
+                    </a>
+                    <a href="{% url 'ajouter_enseignant' %}" class="quick-link">
+                        <span></span> Ajouter un enseignant
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>Statistiques</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-number">{{ total_cours|default:"0" }}</span>
+                    <span class="stat-label">Cours</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">{{ total_enseignants|default:"0" }}</span>
+                    <span class="stat-label">Enseignants</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number"></span>
+                    <span class="stat-label">Prêt à l'emploi</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; {% now "Y" %} Université - Application de Gestion</p>
+        </footer>
+    </div>
+</body>
+</html>

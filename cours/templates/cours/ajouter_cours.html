@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un cours</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+<body>
+    <h1>Ajouter un cours</h1>
+    
+    <div class="navigation">
+        <a href="{% url 'liste_cours' %}" class="btn">← Retour à la liste des cours</a>
+        <a href="{% url 'accueil' %}" class="btn">Accueil</a>
+    </div>
+    
+    <div class="form-container">
+        <form method="POST" class="course-form"> 
+            {% csrf_token %} 
+            
+            {% if form.errors %}
+                <div class="error-message">
+                    <strong>Erreur :</strong> Veuillez corriger les erreurs ci-dessous.
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }} : {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            {{ form.as_p }} 
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Ajouter le cours</button>
+                <a href="{% url 'liste_cours' %}" class="btn-cancel">Annuler</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

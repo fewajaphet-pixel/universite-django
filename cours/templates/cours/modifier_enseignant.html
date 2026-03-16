@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un enseignant</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+<body>
+    <h1>Modifier l'enseignant : {{ enseignant.nom }}</h1>
+    
+    <div class="navigation">
+        <a href="{% url 'liste_enseignant' %}" class="btn">← Retour à la liste</a>
+    </div>
+    
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <div class="error-message">
+                    <strong>Erreur :</strong> Veuillez corriger les erreurs ci-dessous.
+                </div>
+            {% endif %}
+            
+            {{ form.as_p }}
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+                <a href="{% url 'liste_enseignant' %}" class="btn btn-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

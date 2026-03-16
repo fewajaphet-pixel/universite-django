@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liste enseignant</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+<body>
+    <h1>Liste des enseignants</h1>
+
+    <div class="navigation">
+        <a href="{% url 'ajouter_enseignant' %}" class="btn">Ajouter un enseignant</a>
+        <a href="{% url 'liste_cours' %}" class="btn">Liste des cours</a>
+        <a href="{% url 'accueil' %}" class="btn">Accueil</a>
+    </div>
+    
+    <ul class="enseignant-list"> 
+        {% for e in enseignant %} 
+        <li class="enseignant-item"> 
+            <strong>{{ e.nom }}</strong> - {{ e.specialite }}
+            <div class="actions">
+               
+                <a href="{% url 'modifier_enseignant' e.id %}" class="btn-modifier">Modifier</a>
+                <a href="{% url 'supprimer_enseignant' e.id %}" class="btn-supprimer">Supprimer</a>
+            </div>
+        </li> 
+        {% endfor %} 
+    </ul>
+</body>
+</html>

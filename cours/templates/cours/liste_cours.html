@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des cours</title>
+    <link rel="stylesheet" href="{% static 'cours/styles.css' %}">
+</head>
+<body>
+    <h1>Liste des cours</h1>
+    <p>Utilisateur connecté : {{ user.username }}</p>
+
+    <div class="navigation">
+        <a href="{% url 'ajouter_cours' %}" class="btn">Ajouter un cours</a>
+        <a href="{% url 'ajouter_enseignant' %}" class="btn">Ajouter un enseignant</a>
+        <a href="{% url 'liste_enseignant' %}" class="btn">Liste des enseignants</a>
+        <a href="{% url 'accueil' %}" class="btn">Accueil</a>
+    </div>
+
+    {% if cours %}
+        <ul class="cours-list"> 
+            {% for c in cours %} 
+            <li class="cours-item">
+                <strong>{{ c.titre }}</strong> - 
+                Enseignant : {{ c.enseignant.nom }} - 
+                Crédit : {{ c.credit }}
+                
+                <div class="actions">
+                   
+                    <a href="{% url 'modifier_cours' c.id %}" class="btn-modifier">Modifier</a>
+                    <a href="{% url 'supprimer_cours' c.id %}" class="btn-supprimer">Supprimer</a>
+                </div>
+            </li> 
+            {% endfor %} 
+        </ul>
+    {% else %}
+        <p class="empty-message">Aucun cours n'est disponible pour le moment.</p>
+    {% endif %}
+</body>
+</html>
